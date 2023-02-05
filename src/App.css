@@ -36,3 +36,55 @@
     transform: rotate(360deg);
   }
 }
+
+.table-striped th,td{
+  width: 15%;
+  text-align: center;
+}
+
+form {
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+form .btn-primary {
+  margin-left: 190px;
+}
+
+button {
+  margin: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+label {
+  font-weight: bold
+}
+
+#search {
+  border-radius: 4px;
+  margin-top: 18px;
+  margin-left: 10px;
+  width: 250px;
+  height: 35px;
+}
+
+#div-search {
+  float: right;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.form {
+  margin-left: 100px;
+  width: 85%;
+}
+
+#btn_1 {
+  margin-top: 10px;
+}
