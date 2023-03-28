@@ -1,17 +1,13 @@
 import {Component} from "react";
 import Form from "./Form";
+import {PersonObject} from "./PersonObject";
 
 export default class Person extends Component {
     constructor(props) {
         super(props);
         this.state = {
             persons: [
-                {
-                    id: 1,
-                    name: "Lê Hồng Quân",
-                    age: 29,
-                    address: "HB"
-                },
+                new PersonObject(1, "Lê Hồng Quân", 29, "HB"),
                 {
                     id: 2,
                     name: "Nguyễn Đông Nam",

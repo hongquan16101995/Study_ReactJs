@@ -1,13 +1,20 @@
-import {Field, Form, Formik} from "formik";
+import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Link, useNavigate, useParams} from "react-router-dom";
+import * as Yup from "yup"
 
 export default function FormF() {
     const param = useParams();
     const navigate = useNavigate();
     let [species, setSpecies] = useState([]);
     let [animal, setAnimal] = useState('');
+
+    const Validation = Yup.object().shape({
+        name: Yup.string().min(5, "Too short").max(20, "Too long").required("Required"),
+        age: Yup.number().min(0, "Error").max(20, "Too old").required("Required")
+    })
+
     useEffect(() => {
         axios.get('http://localhost:8080/animal/species').then((res) => {
             setSpecies(res.data)
@@ -29,6 +36,7 @@ export default function FormF() {
                         quantity: animal.quantity,
                         species: ''
                     }}
+                    validationSchema={Validation}
                     enableReinitialize={true}
                     onSubmit={(values) => {
                         createAnimal(values)
@@ -37,6 +45,7 @@ export default function FormF() {
                         <div className={'mb-3'}>
                             <label className={'form-label'} htmlFor={'name'}>Name</label><br/>
                             <Field className={'form-control'} type="text" id={'name'} name={'name'}></Field>
+                            <ErrorMessage name={'name'}></ErrorMessage>
                         </div>
                         <div className={'mb-3'}>
                             <label className={'form-label'} htmlFor={'image'}>Image</label><br/>
@@ -45,6 +54,7 @@ export default function FormF() {
                         <div className={'mb-3'}>
                             <label className={'form-label'} htmlFor={'age'}>Age</label><br/>
                             <Field className={'form-control'} type="text" id={'age'} name={'age'}></Field>
+                            <ErrorMessage name={'age'}></ErrorMessage>
                         </div>
                         <div className={'mb-3'}>
                             <label className={'form-label'} htmlFor={'price'}>Price</label><br/>
